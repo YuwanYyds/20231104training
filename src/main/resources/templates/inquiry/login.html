@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+<h1 th:text="${title}">title</h1>
+<form method="post" action="#" th:action="@{/inquiry/form}" th:object="${inquiryForm}">
+	<label for="email">Email:</label>
+	<input id="email" name="email" type="text" th:value="*{email}"><br>
+	<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+	<label for="password">Password:</label>
+	<input id="password" name="password" type="text" th:value="*{password}"><br>
+	<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+	<input type="submit" value="Login">
+</form>
+</body>
+</html>

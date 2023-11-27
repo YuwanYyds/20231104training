@@ -21,14 +21,14 @@ public class InquiryDaoImpl implements InquiryDao {
 	
 	@Override
 	public void insertInquiry(Inquiry inquiry) {
-		jdbcTemplate.update("INSERT INTO inquiry(id, name, email, contents,created) VALUES(?,?,?,?,?)",
-				inquiry.getId(),inquiry.getName(), inquiry.getEmail(), inquiry.getContents(), inquiry.getCreated());
+		jdbcTemplate.update("INSERT INTO inquiry(id, name, email,password,contents,created) VALUES(?,?,?,?,?,?)",
+				inquiry.getId(),inquiry.getName(), inquiry.getEmail(),inquiry.getPassword(),inquiry.getContents(), inquiry.getCreated());
 
 	}
 
 	@Override
 	public List<Inquiry> getAll() {
-		String sql = "SELECT id, name, email, contents,created FROM inquiry";
+		String sql = "SELECT id, name, email,password,contents,created FROM inquiry";
 		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
 		List<Inquiry> list = new ArrayList<Inquiry>();
 		for(Map<String, Object> result : resultList) {
@@ -36,6 +36,7 @@ public class InquiryDaoImpl implements InquiryDao {
 			inquiry.setId((int)result.get("id"));
 			inquiry.setName((String)result.get("name"));
 			inquiry.setEmail((String)result.get("email"));
+			inquiry.setPassword((String)result.get("password"));
 			inquiry.setContents((String)result.get("contents"));
 			inquiry.setCreated((LocalDateTime)result.get("created"));
 			list.add(inquiry);
@@ -45,8 +46,8 @@ public class InquiryDaoImpl implements InquiryDao {
 
 	@Override
 	public int updateInquiry(Inquiry inquiry) {
-		return jdbcTemplate.update("UPDATE inquiry SET name= ?, email= ?, contents= ?, WHERE id= ?",
-				inquiry.getName(), inquiry.getEmail(), inquiry.getContents(), inquiry.getId());
+		return jdbcTemplate.update("UPDATE inquiry SET name= ?, email= ?, password= ?, contents= ?, WHERE id= ?",
+				inquiry.getName(), inquiry.getEmail(), inquiry.getPassword(), inquiry.getContents(), inquiry.getId());
 	}
 
 }

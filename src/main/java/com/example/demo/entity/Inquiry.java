@@ -7,6 +7,7 @@ public class Inquiry {
 	private int id;
 	private String name;
 	private String email;
+	private String password;
 	private String contents;
 	private LocalDateTime created;
 	
@@ -52,6 +53,12 @@ public class Inquiry {
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
-	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 }

@@ -5,7 +5,7 @@ public class InquiryForm {
 	private String name;
 	
 	private String email;
-	
+	private String password;
 	private String contents;
 	public InquiryForm() {
 		super();
@@ -27,5 +27,11 @@ public class InquiryForm {
 	}
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
